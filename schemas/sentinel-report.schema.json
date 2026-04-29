@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sentinel/sentinel-report.schema.json",
+  "title": "Sentinel Report",
+  "type": "object",
+  "required": [
+    "tool",
+    "signature_schema_version",
+    "started_at",
+    "finished_at",
+    "target",
+    "scan_metadata",
+    "summary",
+    "findings",
+    "all_results"
+  ],
+  "properties": {
+    "tool": {
+      "type": "string"
+    },
+    "signature_schema_version": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "finished_at": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "scan_metadata": {
+      "type": "object",
+      "required": [
+        "hash_filter",
+        "pattern_engine",
+        "chunk_size_bytes",
+        "heuristic_engine",
+        "traversal_policy",
+        "symlink_policy"
+      ],
+      "properties": {
+        "hash_filter": { "type": "string" },
+        "hash_filter_items": { "type": "integer", "minimum": 0 },
+        "hash_filter_bits": { "type": "integer", "minimum": 0 },
+        "hash_filter_hash_functions": { "type": "integer", "minimum": 0 },
+        "hash_filter_policy": { "type": "string" },
+        "pattern_engine": { "type": "string" },
+        "pattern_count": { "type": "integer", "minimum": 0 },
+        "automaton_states": { "type": "integer", "minimum": 0 },
+        "chunk_size_bytes": { "type": "integer", "minimum": 1 },
+        "heuristic_sample_limit_bytes": { "type": "integer", "minimum": 1 },
+        "heuristic_engine": { "type": "string" },
+        "heuristic_rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "traversal_policy": { "type": "string" },
+        "symlink_policy": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "infected",
+        "suspicious",
+        "clean",
+        "skipped",
+        "error",
+        "files_scanned",
+        "total_results"
+      ],
+      "properties": {
+        "infected": { "type": "integer", "minimum": 0 },
+        "suspicious": { "type": "integer", "minimum": 0 },
+        "clean": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 },
+        "error": { "type": "integer", "minimum": 0 },
+        "files_scanned": { "type": "integer", "minimum": 0 },
+        "total_results": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file_result" }
+    },
+    "all_results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file_result" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "file_result": {
+      "type": "object",
+      "required": ["path", "status", "severity"],
+      "properties": {
+        "path": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["infected", "suspicious", "clean", "skipped", "error", "matched"]
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["demo", "info", "low", "medium", "high", "critical"]
+        },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "md5": { "type": "string" },
+        "sha256": { "type": "string" },
+        "matches": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/signature_match" }
+        },
+        "heuristics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/heuristic_finding" }
+        },
+        "skip_reason": { "type": "string" },
+        "error": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "signature_match": {
+      "type": "object",
+      "required": [
+        "signature_id",
+        "signature_name",
+        "category",
+        "severity",
+        "matcher"
+      ],
+      "properties": {
+        "signature_id": { "type": "string" },
+        "signature_name": { "type": "string" },
+        "category": { "type": "string" },
+        "severity": {
+          "type": "string",
+          "enum": ["demo", "info", "low", "medium", "high", "critical"]
+        },
+        "matcher": { "type": "string" },
+        "pattern_bytes": { "type": "integer", "minimum": 0 },
+        "pattern_offset": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "heuristic_finding": {
+      "type": "object",
+      "required": ["rule_id", "severity", "description", "evidence"],
+      "properties": {
+        "rule_id": { "type": "string" },
+        "severity": {
+          "type": "string",
+          "enum": ["demo", "info", "low", "medium", "high", "critical"]
+        },
+        "description": { "type": "string" },
+        "evidence": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

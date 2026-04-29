@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sentinel/sentinel-manifest.schema.json",
+  "title": "Sentinel Evidence Manifest",
+  "type": "object",
+  "required": [
+    "tool",
+    "manifest_type",
+    "generated_at",
+    "inputs",
+    "demo_tree",
+    "reports",
+    "reproducibility",
+    "safety"
+  ],
+  "properties": {
+    "tool": { "type": "string" },
+    "manifest_type": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "inputs": {
+      "type": "object",
+      "required": ["target", "signature_database"],
+      "properties": {
+        "target": {
+          "type": "object",
+          "required": ["path", "kind"],
+          "properties": {
+            "path": { "type": "string" },
+            "kind": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "signature_database": { "$ref": "#/$defs/file_evidence" }
+      },
+      "additionalProperties": false
+    },
+    "demo_tree": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file_evidence" }
+    },
+    "reports": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/report_evidence" }
+    },
+    "reproducibility": {
+      "type": "object",
+      "required": [
+        "format_command",
+        "test_command",
+        "lint_command",
+        "signature_validation_command",
+        "eicar_preparation_command",
+        "demo_verification_command",
+        "scan_command",
+        "evidence_manifest_command"
+      ],
+      "properties": {
+        "format_command": { "type": "string" },
+        "test_command": { "type": "string" },
+        "lint_command": { "type": "string" },
+        "signature_validation_command": { "type": "string" },
+        "eicar_preparation_command": { "type": "string" },
+        "demo_verification_command": { "type": "string" },
+        "scan_command": { "type": "string" },
+        "evidence_manifest_command": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "read_only_scanner",
+        "uses_live_malware",
+        "executes_scanned_files",
+        "mutates_scanned_files",
+        "network_actions",
+        "fixture_note"
+      ],
+      "properties": {
+        "read_only_scanner": { "type": "boolean" },
+        "uses_live_malware": { "type": "boolean" },
+        "executes_scanned_files": { "type": "boolean" },
+        "mutates_scanned_files": { "type": "boolean" },
+        "network_actions": { "type": "boolean" },
+        "fixture_note": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "file_evidence": {
+      "type": "object",
+      "required": ["path", "sha256", "size_bytes"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string" },
+        "size_bytes": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "report_evidence": {
+      "type": "object",
+      "required": ["path", "sha256", "size_bytes"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string" },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "tool": {},
+        "target": {},
+        "summary": {},
+        "scan_metadata": {}
+      },
+      "additionalProperties": false
+    }
+  }
+}

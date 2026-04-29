@@ -1,0 +1,26 @@
+[scan]
+recursive = true
+follow_symlinks = false
+max_file_size_mb = 50
+hash_algorithms = ["sha256"]
+
+[ignore]
+paths = [
+  ".git",
+  "target",
+  "node_modules",
+  ".venv"
+]
+
+[rules]
+rulepack = "rules/demo-rules.example.toml"
+
+[report]
+json = "reports/sentinel-report.json"
+markdown = "reports/sentinel-report.md"
+manifest = "reports/evidence-manifest.json"
+
+[policy]
+fail_on = "high"
+warn_on = "medium"
+allow_demo_fixtures = true

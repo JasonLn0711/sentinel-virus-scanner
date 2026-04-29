@@ -1,0 +1,19 @@
+[[rules]]
+id = "demo.eicar.standard"
+name = "EICAR Standard Anti-Virus Test File"
+severity = "demo"
+confidence = "high"
+type = "literal"
+pattern = "EICAR-STANDARD-ANTIVIRUS-TEST-FILE"
+description = "Safe anti-malware test fixture."
+recommendation = "Use only for scanner testing. Do not treat as real malware."
+
+[[rules]]
+id = "script.suspicious.curl-pipe-shell"
+name = "Suspicious curl pipe shell pattern"
+severity = "medium"
+confidence = "medium"
+type = "regex"
+pattern = "curl\\s+.*\\|\\s*(sh|bash)"
+description = "Detects scripts that download remote content and pipe it directly into a shell."
+recommendation = "Review source URL, execution context, and whether this is expected."
