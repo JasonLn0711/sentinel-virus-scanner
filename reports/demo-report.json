@@ -1,0 +1,162 @@
+{
+  "tool": "Sentinel Virus Scanner",
+  "signature_schema_version": "1.0",
+  "started_at": "2026-04-29T15:32:06Z",
+  "finished_at": "2026-04-29T15:32:06Z",
+  "target": "../demo/demo-tree",
+  "scan_metadata": {
+    "hash_filter": "bloom-filter",
+    "hash_filter_items": 2,
+    "hash_filter_bits": 128,
+    "hash_filter_hash_functions": 3,
+    "hash_filter_policy": "precheck-then-exact-hash-map",
+    "pattern_engine": "aho-corasick-byte-automaton",
+    "pattern_count": 1,
+    "automaton_states": 69,
+    "chunk_size_bytes": 1048576,
+    "heuristic_sample_limit_bytes": 1048576,
+    "heuristic_engine": "bounded-static-byte-sample",
+    "heuristic_rules": [
+      "api-name-indicator",
+      "magic-mismatch",
+      "high-entropy-sample"
+    ],
+    "traversal_policy": "deterministic-rglob-files",
+    "symlink_policy": "skip"
+  },
+  "summary": {
+    "infected": 1,
+    "suspicious": 1,
+    "clean": 3,
+    "skipped": 0,
+    "error": 0,
+    "files_scanned": 5,
+    "total_results": 5
+  },
+  "findings": [
+    {
+      "path": "nested/level-1/level-2/eicar.com.txt",
+      "status": "infected",
+      "severity": "critical",
+      "size_bytes": 68,
+      "md5": "44d88612fea8a8f36de82e1278abb02f",
+      "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+      "matches": [
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "md5"
+        },
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "sha256"
+        },
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "hex_pattern",
+          "pattern_bytes": 68,
+          "pattern_offset": 0
+        }
+      ]
+    },
+    {
+      "path": "suspicious/api-names-fixture.txt",
+      "status": "suspicious",
+      "severity": "medium",
+      "size_bytes": 149,
+      "md5": "f3cc674cca37cdafe3a04d3dfb11eb89",
+      "sha256": "e82d86354c2d35e16ba25417d042a6d8633fe390118bcfa0767f7370352b3f2e",
+      "heuristics": [
+        {
+          "rule_id": "api-name-indicator",
+          "severity": "medium",
+          "description": "Suspicious API-name strings appear in the file.",
+          "evidence": "CreateRemoteThread, VirtualAllocEx, WriteProcessMemory"
+        }
+      ]
+    }
+  ],
+  "all_results": [
+    {
+      "path": "clean/image-placeholder.bin",
+      "status": "clean",
+      "severity": "info",
+      "size_bytes": 56,
+      "md5": "832abbc91efb58b3bfb9a258582ec5c5",
+      "sha256": "2d878a97c4fb1d6cabcf0b6e6aa52eb01ec6a7bf064de55b5d4c893e27673bbe"
+    },
+    {
+      "path": "clean/notes.txt",
+      "status": "clean",
+      "severity": "info",
+      "size_bytes": 105,
+      "md5": "ec2db0848f7f1dd9c37fe5d5a02135bc",
+      "sha256": "e74722e0fe162678153f68b7ebca5d363a5175f7dc317c1cff65208ad912ff4c"
+    },
+    {
+      "path": "ignored-or-empty/empty.txt",
+      "status": "clean",
+      "severity": "info",
+      "size_bytes": 1,
+      "md5": "68b329da9893e34099c7d8ad5cb9c940",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "nested/level-1/level-2/eicar.com.txt",
+      "status": "infected",
+      "severity": "critical",
+      "size_bytes": 68,
+      "md5": "44d88612fea8a8f36de82e1278abb02f",
+      "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+      "matches": [
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "md5"
+        },
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "sha256"
+        },
+        {
+          "signature_id": "sig-eicar-standard-antivirus-test-file",
+          "signature_name": "EICAR Standard Anti-Virus Test File",
+          "category": "safe-standard-test-file",
+          "severity": "critical",
+          "matcher": "hex_pattern",
+          "pattern_bytes": 68,
+          "pattern_offset": 0
+        }
+      ]
+    },
+    {
+      "path": "suspicious/api-names-fixture.txt",
+      "status": "suspicious",
+      "severity": "medium",
+      "size_bytes": 149,
+      "md5": "f3cc674cca37cdafe3a04d3dfb11eb89",
+      "sha256": "e82d86354c2d35e16ba25417d042a6d8633fe390118bcfa0767f7370352b3f2e",
+      "heuristics": [
+        {
+          "rule_id": "api-name-indicator",
+          "severity": "medium",
+          "description": "Suspicious API-name strings appear in the file.",
+          "evidence": "CreateRemoteThread, VirtualAllocEx, WriteProcessMemory"
+        }
+      ]
+    }
+  ]
+}

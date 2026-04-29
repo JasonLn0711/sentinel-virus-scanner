@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+.codex/
+
+# Rust
+rust/target/
+target/
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated demo fixture
+demo/demo-tree/**/eicar.com.txt
+
+# Build and export output
+build/
+dist/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp

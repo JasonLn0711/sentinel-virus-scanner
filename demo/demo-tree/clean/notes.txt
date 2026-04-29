@@ -1,0 +1,2 @@
+This is a clean file for the Sentinel scanner demo.
+It should not match any signature or heuristic rule.

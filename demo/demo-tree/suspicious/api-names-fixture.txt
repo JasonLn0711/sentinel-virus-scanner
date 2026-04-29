@@ -1,0 +1,4 @@
+This safe heuristic fixture mentions API names commonly discussed in malware-analysis examples.
+CreateRemoteThread
+VirtualAllocEx
+WriteProcessMemory

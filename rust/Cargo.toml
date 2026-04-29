@@ -1,0 +1,14 @@
+[package]
+name = "sentinel-virus-scanner"
+version = "0.1.0"
+edition = "2021"
+description = "Local-first read-only signature scanner for safe malware-detection labs"
+license = "MIT"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+hex = "0.4"
+md5 = "0.7"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"

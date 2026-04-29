@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-04-22T00:00:00+08:00",
+  "source": "EICAR Standard Anti-Virus Test File reference hashes only; this file intentionally does not store the generated 68-byte EICAR demo content.",
+  "signatures": [
+    {
+      "id": "sig-eicar-standard-antivirus-test-file",
+      "name": "EICAR Standard Anti-Virus Test File",
+      "category": "safe-standard-test-file",
+      "severity": "high",
+      "matchers": [
+        {
+          "type": "md5",
+          "value": "44d88612fea8a8f36de82e1278abb02f"
+        },
+        {
+          "type": "sha256",
+          "value": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f"
+        }
+      ],
+      "notes": "Official safe anti-malware test file reference. The Rust prepare-eicar-demo command generates the actual EICAR test file in the controlled demo tree; the generated literal file is not committed or exported."
+    }
+  ]
+}
