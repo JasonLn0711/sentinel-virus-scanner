@@ -1,5 +1,6 @@
 # Sentinel Artifact Scanner
 
+<img src="http://estruyf-github.azurewebsites.net/api/VisitorHit?user=JasonLn0711&repo=sentinel-virus-scanner&countColor=%237B1E7B" alt="Visitor count"/>
 Sentinel Artifact Scanner is a local-first, read-only artifact scanner and
 evidence generator for security-learning projects, repo hygiene, demo labs, and
 research workflows.
